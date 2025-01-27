@@ -322,6 +322,7 @@ button[type="submit"]:focus {
   width: 40rem;
   max-width: 100%;
   background: transparent;
+  z-index: 100;
 }
 
 #startExamImg {
@@ -376,6 +377,7 @@ button[type="submit"]:focus {
   max-width: 100%;
   background: linear-gradient(rgba(32, 16, 75, 0.603), rgb(98, 86, 133));
   box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.8);
+  z-index: 100;
 }
 .clock i {
   font-size: large;
@@ -383,8 +385,7 @@ button[type="submit"]:focus {
   font-size: 1.3rem;
 }
 .clock span {
-  color: #5f0f0f;
-  /* #190b2f */
+  color: beige;
   font-weight: bold;
 }
 .visibleSpan {
@@ -566,7 +567,7 @@ button[type="submit"]:focus {
   border-radius: 10%;
   border: 5px solid rgba(12, 7, 56, 0.8);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-  animation: shake-img 0.6s 10;
+  animation: shake-img 1s 60;
 }
 
 #timeoutResult {

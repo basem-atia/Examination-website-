@@ -15,8 +15,10 @@ const secondPage = $(".second-full-container");
 const thirdPage = $(".third-full-container");
 // selector for fourth page
 const fourthPage = $(".fourth-full-container");
-// selector for fifth page
+// selector for fifth page grade
 const fifthPage = $(".fifth-full-container");
+//selector for timeout page
+const timeoutPage = $(".timeout-full-container");
 // selectors for first name input
 const firstName = $("input[name='FirstName']");
 const firstNameSpan = $("#firstNameSpan");
@@ -100,6 +102,8 @@ signUp.on("click", function (e) {
     secondPage.css("display", "flex");
     localStorage.setItem("email", email.val());
     localStorage.setItem("password", password.val());
+    localStorage.setItem("firstName", firstName.val());
+    localStorage.setItem("lastName", lastName.val());
     loginEmail.val(localStorage.getItem("email"));
     loginPassword.val(localStorage.getItem("password"));
   }
@@ -191,12 +195,46 @@ startExam.addEventListener("mouseout", function () {
 // });
 
 /////////////////////fourth page/////////////////////////////////
+const clockStart = $(".clockStart");
+const clock = $(".clock i");
+const timeRunSpan = $(".timeRun");
+const timeoutMsg = $("#timeoutResult");
+let count_time = 0;
+
 const startExamButton = $("#startExam");
 startExamButton.on("click", function () {
   thirdPage.hide();
   GetData();
   fourthPage.css("display", "flex");
+  let interval = setInterval(function () {
+    clockStart.text(formatTime(count_time));
+    count_time++;
+  }, 1000);
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const second = Math.floor(seconds % 60);
+    checkTime(minutes, second, interval);
+    return `${
+      minutes < 10 ? "0" + minutes : minutes
+    }:${second < 10 ? "0" + second : second}`;
+  }
 });
+function checkTime(minutes, second, interval) {
+  if (second === 5) {
+    clockStart.css("color", "#5f0f0f");
+    clock.css("animation", "shake-img 1s 60");
+    timeRunSpan.css("color", "#5f0f0f");
+    timeRunSpan.text("Hurry up, the time is running!!");
+  }
+  if (second === 11) {
+    clearInterval(interval);
+    fourthPage.hide();
+    timeoutPage.css("display", "flex");
+    timeoutMsg.text(
+      `Sorry ${localStorage.firstName} ${localStorage.lastName}, the time is out.`
+    );
+  }
+}
 
 //////////////////////////fifth page///////////////////////////////////////
 const loadingDiv = $(".loading");
@@ -327,69 +365,3 @@ function showHide(index) {
   $(`.ca-${index}`).css("display", "flex");
   $(".number").text(`${counter} out of 5`);
 }
-/**
- * <div
-            class="question p-2 mb-3 fs-5 d-flex align-items-center justify-content-between"
-          >
-            <span class="visibleSpan" id="flaggedQuestion">Question 1</span>
-            <i class="text-danger bi bi-trash"></i>
-          </div>
- * <div
-          class="column text-start blockClass-1 bg-white questions z-4 align-items-start me-4 flex-column col-12 col-sm-12 col-md-7 col-lg-8"
-        >
-          <div class="clock d-flex justify-content-start gap-2">
-            <i class="bi bi-alarm"></i>
-            <span class="visibleSpan">00:00</span>
-          </div>
-          <h3 class="d-flex justify-content-start">
-            Choose the correct answer
-          </h3>
-          <div class="question p-2 mb-3 fs-5 d-flex justify-content-between">
-            <span class="visibleSpan"
-              >The Basic Building blocks of HTML are called</span
-            >
-            <i class="p-1 bi bi-flag"></i>
-          </div>
-          <button class="text-start answer p-2 mb-2">
-            <p class="fs-6 p-0 m-0">Classes</p>
-          </button>
-          <button class="text-start answer p-2 mb-2">
-            <p class="fs-6 p-0 m-0">Selectors</p>
-          </button>
-          <button class="text-start answer p-2 mb-2">
-            <p class="fs-6 p-0 m-0">Properties</p>
-          </button>
-          <button class="text-start answer p-2 mb-2">
-            <p class="p-0 m-0 fs-6">Elements</p>
-          </button>
-          <div
-            class="slide d-flex justify-content-center align-items-center pe-2 gap-3"
-          >
-            <div
-              class="slide-arrow d-flex flex-fill align-items-center justify-content-center"
-            >
-              <button class="arrow">
-                <i class="bi bi-caret-left-square-fill"></i>
-              </button>
-              <span class="fs-6">1 out of 6</span>
-              <button class="arrow">
-                <i class="bi bi-caret-right-square-fill"></i>
-              </button>
-            </div>
-            <button class="submit-answer p-2 me-3">Submit</button>
-          </div>
-        </div>
-        <div
-        <div
-          class="column bg-white list z-3 blockClass-1 text-center justify-content-center align-items-center col-12 col-sm-12 col-md-3 col-lg-3"
-        >
-          <p class="fs-4">Marked Questions</p>
-          <hr />
-          <div
-            class="question p-2 mb-3 fs-5 d-flex align-items-center justify-content-between"
-          >
-            <span class="visibleSpan" id="flaggedQuestion">Question 1</span>
-            <i class="text-danger bi bi-trash"></i>
-          </div>
-        </div>
- */
