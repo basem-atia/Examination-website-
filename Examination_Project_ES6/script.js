@@ -182,70 +182,16 @@ startExam.addEventListener("mouseout", function () {
   startExamImg.style.backgroundImage = "url(images/happy.jpg)";
 });
 
-/*
-   event on load of page if local storage contain username and password it will forward to log in page
-   */
-// window.addEventListener("load", function () {
-//   if (localStorage.getItem("email") && localStorage.getItem("password")) {
-//     firstPage.hide();
-//     secondPage.css("display", "flex");
-//     loginEmail.val(localStorage.getItem("email"));
-//     loginPassword.val(localStorage.getItem("password"));
-//   }
-// });
-
 /////////////////////fourth page/////////////////////////////////
-const clockStart = $(".clockStart");
-const clock = $(".clock i");
-const timeRunSpan = $(".timeRun");
-const timeoutMsg = $("#timeoutResult");
-let count_time = 0;
-
-const startExamButton = $("#startExam");
-startExamButton.on("click", function () {
-  thirdPage.hide();
-  GetData();
-  fourthPage.css("display", "flex");
-  let interval = setInterval(function () {
-    clockStart.text(formatTime(count_time));
-    count_time++;
-  }, 1000);
-  function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const second = Math.floor(seconds % 60);
-    checkTime(minutes, second, interval);
-    return `${
-      minutes < 10 ? "0" + minutes : minutes
-    }:${second < 10 ? "0" + second : second}`;
-  }
-});
-function checkTime(minutes, second, interval) {
-  if (second === 5) {
-    clockStart.css("color", "#5f0f0f");
-    clock.css("animation", "shake-img 1s 60");
-    timeRunSpan.css("color", "#5f0f0f");
-    timeRunSpan.text("Hurry up, the time is running!!");
-  }
-  if (second === 11) {
-    clearInterval(interval);
-    fourthPage.hide();
-    timeoutPage.css("display", "flex");
-    timeoutMsg.text(
-      `Sorry ${localStorage.firstName} ${localStorage.lastName}, the time is out.`
-    );
-  }
-}
-
-//////////////////////////fifth page///////////////////////////////////////
 const loadingDiv = $(".loading");
 const errorDiv = $(".error-message");
 const errorPara = $(".error-message p");
+let array = [];
 async function GetData() {
   loadingDiv.css("display", "flex");
   $(".questions").hide();
   $(".list").hide();
   errorDiv.hide();
-  let array = [];
   try {
     let resp = await fetch("response.json");
     if (!resp.ok) {
@@ -282,6 +228,7 @@ function questionCreation(array) {
     );
     questionDiv.insertBefore(".questions .slide");
     let answerContainer = $(`<div class='answer-container ca-${i + 1}'></div>`);
+    console.log(question.answer);
     question.options.forEach(function (answer) {
       let answerButton = $(
         `<button class='text-start a-${
@@ -365,3 +312,102 @@ function showHide(index) {
   $(`.ca-${index}`).css("display", "flex");
   $(".number").text(`${counter} out of 5`);
 }
+
+//////////////////////////fifth and third page///////////////////////////////////////
+
+const clockStart = $(".clockStart");
+const clock = $(".clock i");
+const timeRunSpan = $(".timeRun");
+const timeoutMsg = $("#timeoutResult");
+let count_time = 0;
+const failImage = $("#finalResultImg");
+const gradeMessage = $("#finalResultGrade");
+const gradeGreetingMessage = $("#finalResultGreeting");
+const submitAnswerButton = $(".submit-answer");
+const startExamButton = $("#startExam");
+///
+let interval = "";
+startExamButton.on("click", function () {
+  thirdPage.hide();
+  GetData();
+  fourthPage.css("display", "flex");
+  interval = setInterval(function () {
+    clockStart.text(formatTime(count_time));
+    count_time++;
+  }, 1000);
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const second = Math.floor(seconds % 60);
+    checkTime(minutes, second);
+    return `${
+      minutes < 10 ? "0" + minutes : minutes
+    }:${second < 10 ? "0" + second : second}`;
+  }
+});
+function checkTime(minutes, second) {
+  if (second === 15) {
+    clockStart.css("color", "#5f0f0f");
+    clock.css("animation", "shake-img 1s 60");
+    timeRunSpan.css("color", "#5f0f0f");
+    timeRunSpan.text("Hurry up, the time is running!!");
+  }
+  if (second === 20) {
+    clearInterval(interval);
+    fourthPage.hide();
+    timeoutPage.css("display", "flex");
+    timeoutMsg.text(
+      `Sorry ${localStorage.firstName} ${localStorage.lastName}, the time is out.`
+    );
+    setTimeout(function () {
+      timeoutPage.hide();
+      fifthPage.css("display", "flex");
+      let grade = calculateGrade();
+      finalResult(grade);
+      emptyLocalAnswer();
+    }, 5000);
+  }
+}
+submitAnswerButton.on("click", function () {
+  clearInterval(interval);
+  fourthPage.hide();
+  fifthPage.css("display", "flex");
+  let grade = calculateGrade();
+  finalResult(grade);
+  emptyLocalAnswer();
+});
+/////////////////////////////// start of grade calculation////////////////////////////////////
+function calculateGrade() {
+  let grade = 0;
+  for (let i = 0; i < 5; i++) {
+    if (localStorage[`question${i + 1}`] === array[i].answer) {
+      grade += 20;
+    }
+  }
+  return grade;
+}
+function finalResult(grade) {
+  if (grade < 50) {
+    failImage.css("background-image", "url(./images/fail.jpg)");
+    gradeMessage.html(
+      `Your Grade is <span style='color:red;'>${grade}%</span>`
+    );
+    gradeGreetingMessage.text(
+      `Sorry ${localStorage.firstName} ${localStorage.lastName}, you failed in this quiz `
+    );
+  } else {
+    gradeMessage.html(
+      `Your Grade is <span style='color:green;'>${grade}%</span>`
+    );
+    gradeGreetingMessage.text(
+      `Congratulations ${localStorage.firstName} ${localStorage.lastName} !`
+    );
+  }
+}
+
+function emptyLocalAnswer() {
+  for (let i = 0; i < 5; i++) {
+    localStorage[`question${i + 1}`] = "";
+  }
+}
+
+/////////////////////////////// end of grade calculation////////////////////////////////////

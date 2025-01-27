@@ -284,7 +284,7 @@ button[type="submit"]:focus {
 }
 
 .first-full-container {
-  /* display: none; */
+  display: none;
 }
 /* second page */
 
@@ -313,7 +313,7 @@ button[type="submit"]:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  display: none;
+  /* display: none; */
 }
 
 .blockClass {
@@ -517,17 +517,18 @@ button[type="submit"]:focus {
   display: none;
 }
 
-#finalResult {
+#finalResultGreeting,
+#finalResultGrade {
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: larger;
   font-weight: bold;
 }
 
-#finalResult span {
+/* #finalResult span {
   text-decoration: underline;
   color: green;
-}
+} */
 
 #finalResultImg {
   width: 80%;

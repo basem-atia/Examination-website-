@@ -237,7 +237,8 @@
         >
           <div class="clock d-flex justify-content-start gap-2">
             <i class="bi bi-alarm"></i>
-            <span class="visibleSpan clockStart">00:00</span><span class="timeRun"></span>
+            <span class="visibleSpan clockStart">00:00</span
+            ><span class="timeRun"></span>
           </div>
           <h3 class="d-flex justify-content-start">
             Choose the correct answer
@@ -322,8 +323,10 @@
           class="blockClass d-flex flex-column justify-content-center align-items-center gap-4"
         >
           <div id="finalResultImg"></div>
-          <div id="finalResult">
-            congratulations, you have passed with <span>100%</span>
+          <div id="finalResult d-flex text-center justify-content-center">
+            <p id="finalResultGrade" class="text-center"></p>
+            <hr class="w-75" />
+            <p id="finalResultGreeting"></p>
           </div>
         </div>
       </div>
