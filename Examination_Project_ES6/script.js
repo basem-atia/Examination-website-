@@ -149,7 +149,6 @@ signInButton.on("click", function (e) {
   if (valid2) {
     userEmail = localStorage.email;
     userPassword = localStorage.password;
-    console.log(loginEmail.val(), loginPassword.val(), userEmail, userPassword);
     if (
       loginEmail.val() === userEmail &&
       loginPassword.val() === userPassword
