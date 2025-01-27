@@ -1,0 +1,291 @@
+[
+  {
+    "_id": "667afa1250320766f1754a8f",
+    "topicNumber": 13,
+    "head": "What is the primary purpose of HTML?",
+    "options": [
+      "To add styles to a web page",
+      "To structure and organize content on a web page",
+      "To add interactivity to a web page",
+      "To store data on a web page"
+    ],
+    "answer": "To structure and organize content on a web page",
+    "__v": 0
+  },
+  {
+    "_id": "667afa1250320766f1754a90",
+    "topicNumber": 13,
+    "head": "What is the function of the <head> element in HTML?",
+    "options": [
+      "To define the body of the HTML document",
+      "To define the header of the HTML document",
+      "To define the footer of the HTML document",
+      "To define metadata about the HTML document"
+    ],
+    "answer": "To define metadata about the HTML document",
+    "__v": 0
+  },
+  {
+    "_id": "667afa1250320766f1754a91",
+    "topicNumber": 13,
+    "head": "What is the primary function of Hypertext in HTML?",
+    "options": [
+      "To define the structure of a web page",
+      "To add styles to a web page",
+      "To define the link between web pages",
+      "To store data on a web page"
+    ],
+    "answer": "To define the link between web pages",
+    "__v": 0
+  },
+  {
+    "_id": "667afa1250320766f1754a92",
+    "topicNumber": 13,
+    "head": "What is the purpose of Markup language in HTML?",
+    "options": [
+      "To define the structure of a web page",
+      "To add styles to a web page",
+      "To define the link between web pages",
+      "To store data on a web page"
+    ],
+    "answer": "To define the structure of a web page",
+    "__v": 0
+  },
+  {
+    "_id": "667afa1250320766f1754a93",
+    "topicNumber": 13,
+    "head": "What is the result of combining Hypertext and Markup language?",
+    "options": [
+      "A web page with only links",
+      "A web page with only structure and content",
+      "A web page with both links and structure/content",
+      "A web page with neither links nor structure/content\n;"
+    ],
+    "answer": "A web page with both links and structure/content",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e356638",
+    "topicNumber": 13,
+    "head": "What is the purpose of a doctype or document-type declaration in an HTML document?",
+    "options": [
+      "To define the title of the webpage",
+      "To specify the version of HTML used in the document",
+      "To add an image to the webpage",
+      "To create a hyperlink"
+    ],
+    "answer": "To specify the version of HTML used in the document",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e35663a",
+    "topicNumber": 13,
+    "head": "Is the DOCTYPE declaration case-sensitive in HTML5?",
+    "options": [
+      "Yes",
+      "No",
+      "Only for certain browsers",
+      "It depends on the version of HTML"
+    ],
+    "answer": "No",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e35663b",
+    "topicNumber": 13,
+    "head": "What are the starting and ending parts of an HTML element?",
+    "options": ["Attributes", "Elements", "Content", "Tags"],
+    "answer": "Tags",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e35663c",
+    "topicNumber": 13,
+    "head": "What are the three main parts of an HTML element?",
+    "options": [
+      "Start tag - end tag - attribute",
+      "Start tag - content - end tag",
+      "Element - attribute - value",
+      "Tag - content - style"
+    ],
+    "answer": "Start tag - content - end tag",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e35663d",
+    "topicNumber": 13,
+    "head": "What is the content of an HTML element?",
+    "options": [
+      "The text between the start and end tags",
+      "The start tag of the element",
+      "The end tag of the element",
+      "The attribute of the element"
+    ],
+    "answer": "The text between the start and end tags",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e35663e",
+    "topicNumber": 13,
+    "head": "What is an HTML Tag?",
+    "options": [
+      "A collection of a start tag end tag and its attributes",
+      "Either opening or closing used to mark the start or end of an element",
+      "Whatever is written within an HTML tag are HTML elements",
+      "Holds the content"
+    ],
+    "answer": "Either opening or closing used to mark the start or end of an element",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e35663f",
+    "topicNumber": 13,
+    "head": "What is the relationship between an HTML Tag and an HTML Element?",
+    "options": [
+      "An HTML Tag is a part of an HTML Element",
+      "An HTML Element is a part of an HTML Tag",
+      "An HTML Tag is the same as an HTML Element",
+      "An HTML Element is used to hold an HTML Tag"
+    ],
+    "answer": "An HTML Tag is a part of an HTML Element",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e356640",
+    "topicNumber": 13,
+    "head": "What is the highest level of heading in HTML?",
+    "options": ["H1", "H2", "H5", "H6"],
+    "answer": "H1",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e356641",
+    "topicNumber": 13,
+    "head": "What is the primary purpose of headings in HTML?",
+    "options": [
+      "To add styles to the text",
+      "To provide valuable information about the document structure",
+      "To create hyperlinks",
+      "To add images to the webpage"
+    ],
+    "answer": "To provide valuable information about the document structure",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e356642",
+    "topicNumber": 13,
+    "head": "Why do search engines use headings?",
+    "options": [
+      "To improve webpage loading speed",
+      "To index the structure and content of the webpage",
+      "To create a sitemap",
+      "To add metadata to the webpage"
+    ],
+    "answer": "To index the structure and content of the webpage",
+    "__v": 0
+  },
+  {
+    "_id": "66818a97e87229ca1e356643",
+    "topicNumber": 13,
+    "head": "What is another importance of headings in HTML?",
+    "options": [
+      "They are used for creating tables",
+      "They are used for highlighting important topics",
+      "They are used for creating forms",
+      "They are used for adding audio to the webpage"
+    ],
+    "answer": "They are used for highlighting important topics",
+    "__v": 0
+  },
+  {
+    "_id": "6686e657813c114177d33fa3",
+    "topicNumber": 13,
+    "head": "What HTML element is used to redirect to a particular section on the same page?",
+    "options": [
+      "button element",
+      "anchor tag (<a>)",
+      "div element",
+      "span element"
+    ],
+    "answer": "anchor tag (<a>)",
+    "__v": 0
+  },
+  {
+    "_id": "6686e657813c114177d33fa4",
+    "topicNumber": 13,
+    "head": "What attribute needs to be added to the section that you want to show when redirecting?",
+    "options": [
+      "class attribute",
+      "id attribute",
+      "style attribute",
+      "href attribute"
+    ],
+    "answer": "id attribute",
+    "__v": 0
+  },
+  {
+    "_id": "6686e657813c114177d33fa5",
+    "topicNumber": 13,
+    "head": "How do you specify the ID in the href attribute of the anchor tag?",
+    "options": [
+      "With the % symbol followed by the ID",
+      "With the # symbol followed by the ID",
+      "With the . symbol followed by the ID",
+      "With the * symbol followed by the ID"
+    ],
+    "answer": "With the # symbol followed by the ID",
+    "__v": 0
+  },
+  {
+    "_id": "6686e657813c114177d33fa6",
+    "topicNumber": 13,
+    "head": "What is the purpose of an attribute in HTML?",
+    "options": [
+      "To provide a title to an element",
+      "To provide extra or additional information about an element",
+      "To change the color of an element",
+      "To remove an element from the page"
+    ],
+    "answer": "To provide extra or additional information about an element",
+    "__v": 0
+  },
+  {
+    "_id": "6686e657813c114177d33fa7",
+    "topicNumber": 13,
+    "head": "Which of the following statements is true about HTML elements and attributes?",
+    "options": [
+      "Only some HTML elements can have attributes",
+      "All HTML elements can have attributes",
+      "Attributes are only used for styling elements",
+      "Attributes are only used for scripting elements"
+    ],
+    "answer": "All HTML elements can have attributes",
+    "__v": 0
+  },
+  {
+    "_id": "6686e657813c114177d33fa8",
+    "topicNumber": 13,
+    "head": "What are the two parameters of an attribute in HTML?",
+    "options": [
+      "Name and style",
+      "Name and value",
+      "Property and extent",
+      "Element and attribute"
+    ],
+    "answer": "Name and value",
+    "__v": 0
+  },
+  {
+    "_id": "6686e657813c114177d33fa9",
+    "topicNumber": 13,
+    "head": "How should the value of an attribute be written in HTML?",
+    "options": [
+      "Without quotes",
+      "Within single quotes",
+      "Within double quotes",
+      "Within curly braces"
+    ],
+    "answer": "Within double quotes",
+    "__v": 0
+  }
+]

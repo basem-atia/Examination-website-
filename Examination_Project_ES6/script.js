@@ -1,0 +1,395 @@
+// reg expression
+const firstRegExp = new RegExp("^[A-Za-z]{3,}$");
+const lastRegExp = new RegExp("^[A-Za-z]+\\s[A-Za-z]+$");
+const emailRegExp = new RegExp(
+  "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+);
+const passwordRegExp = new RegExp(
+  "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d])[A-Za-z\\d!@#$%^&*()_+\\-=]{8,}$"
+);
+//selectors for first page
+const firstPage = $(".first-full-container");
+// selector for second page
+const secondPage = $(".second-full-container");
+// selector for third page
+const thirdPage = $(".third-full-container");
+// selector for fourth page
+const fourthPage = $(".fourth-full-container");
+// selector for fifth page
+const fifthPage = $(".fifth-full-container");
+// selectors for first name input
+const firstName = $("input[name='FirstName']");
+const firstNameSpan = $("#firstNameSpan");
+const firstNameMessage =
+  "First Name should be at least 3 alphapetical characters ";
+// selectors for last name input
+const lastName = $("input[name='LastName']");
+const lastNameSpan = $("#lastNameSpan");
+const lastNameMessage = "Last Name should be two words with space in betweeen";
+// selectors for email input
+const email = $("input[name='Email']");
+const emailSpan = $("#emailSpan");
+const emailMessage = "Invalid Email should be as example@Example.com";
+// selectors for password input
+const password = $("input[name='Password']");
+const passwordSpan = $("#passwordSpan");
+const passwordMessage =
+  "password should contain at least one uppercase , one lowercase , one special char , one number";
+//selectors for reConfirm password input
+const rePassword = $("input[name='Re-enter-password']");
+const rePasswordSpan = $("#rePasswordSpan");
+const rePasswordMessage = "Don't match the entered password";
+//selectors for form and signup button
+const form = $("#SignUpForm");
+const signUp = $("#signUpButton");
+// selectors for second page
+// selectors for login email input
+const loginEmail = $("input[name='loginEmail']");
+const loginEmailSpan = $("#loginEmailSpan");
+const loginEmailMessage = "Invalid Email should be as example@Example.com";
+// selectors for login password input
+const loginPassword = $("input[name='loginPassword']");
+const loginPasswordSpan = $("#loginPasswordSpan");
+const loginPasswordMessage =
+  "password should contain at least one uppercase , one lowercase , one special char , one number";
+
+function validateInput(input, regex, errorSpan, errorMessage) {
+  if (!regex.test(input.val()) && input.val() !== "") {
+    errorSpan.css("visibility", "visible").text(errorMessage);
+    return false;
+  } else if (input.val() === "") {
+    errorSpan.css("visibility", "visible").text("This field is required.");
+    return false;
+  } else if (regex.test(input.val())) {
+    errorSpan.css("visibility", "hidden").text("");
+    return true;
+  }
+}
+signUp.on("click", function (e) {
+  let valid = true;
+  e.preventDefault();
+  //check validity for input 1 which is first name
+  if (!validateInput(firstName, firstRegExp, firstNameSpan, firstNameMessage)) {
+    valid = false;
+  }
+
+  //check validity for input 2 which is last name it should be two words with space between
+  if (!validateInput(lastName, lastRegExp, lastNameSpan, lastNameMessage)) {
+    valid = false;
+  }
+  //check validity for input 3 which is email address
+  if (!validateInput(email, emailRegExp, emailSpan, emailMessage)) {
+    valid = false;
+  }
+  //check validity for input 4 which is password
+  if (!validateInput(password, passwordRegExp, passwordSpan, passwordMessage)) {
+    valid = false;
+  }
+  //check validity for input 5 which is password
+  if (rePassword.val() !== password.val() && rePassword.val() !== "") {
+    rePasswordSpan.css("visibility", "visible").text(rePasswordMessage);
+    valid = false;
+  } else if (rePassword.val() === "") {
+    rePasswordSpan.css("visibility", "visible").text("This field is required");
+    valid = false;
+  } else if (rePassword.val() === password.val()) {
+    rePasswordSpan.css("visibility", "hidden").text("");
+  }
+  if (valid) {
+    firstPage.hide();
+    secondPage.css("display", "flex");
+    localStorage.setItem("email", email.val());
+    localStorage.setItem("password", password.val());
+    loginEmail.val(localStorage.getItem("email"));
+    loginPassword.val(localStorage.getItem("password"));
+  }
+});
+
+//////////////password hide and show
+let passwordEye = $(".password .fa-eye-slash");
+passwordEye.on("click", function () {
+  if ($(this).hasClass("fa-eye-slash")) {
+    $(this).removeClass("fa-eye-slash");
+    $(this).addClass("fa-eye");
+    $(this.previousSibling).attr("type", "text");
+  } else {
+    $(this).removeClass("fa-eye");
+    $(this).addClass("fa-eye-slash");
+    $(this.previousSibling).attr("type", "password");
+  }
+});
+
+///second page logic
+
+const signInButton = $("#signInButton");
+let userEmail = localStorage.email;
+let userPassword = localStorage.password;
+signInButton.on("click", function (e) {
+  e.preventDefault();
+  let valid2 = true;
+  if (
+    !validateInput(loginEmail, emailRegExp, loginEmailSpan, loginEmailMessage)
+  ) {
+    valid2 = false;
+  }
+  if (
+    !validateInput(
+      loginPassword,
+      passwordRegExp,
+      loginPasswordSpan,
+      loginPasswordMessage
+    )
+  ) {
+    valid2 = false;
+  }
+  if (valid2) {
+    userEmail = localStorage.email;
+    userPassword = localStorage.password;
+    console.log(loginEmail.val(), loginPassword.val(), userEmail, userPassword);
+    if (
+      loginEmail.val() === userEmail &&
+      loginPassword.val() === userPassword
+    ) {
+      loginEmailSpan.css("visibility", "hidden");
+      loginEmailSpan.css("visibility", "hidden");
+      secondPage.hide();
+      thirdPage.css("display", "flex");
+    } else {
+      if (loginEmail.val() !== userEmail) {
+        loginEmailSpan.css("visibility", "visible").text("email is not found");
+      }
+      if (loginPassword.val() !== userPassword) {
+        loginPasswordSpan
+          .css("visibility", "visible")
+          .text("password is not found");
+      }
+    }
+  }
+});
+
+// image transition
+const startExam = document.getElementById("startExam");
+const startExamImg = document.getElementById("startExamImg");
+
+startExam.addEventListener("mouseover", function () {
+  startExamImg.style.backgroundImage = "url(images/sad.jpg)";
+});
+startExam.addEventListener("mouseout", function () {
+  startExamImg.style.backgroundImage = "url(images/happy.jpg)";
+});
+
+/*
+   event on load of page if local storage contain username and password it will forward to log in page
+   */
+// window.addEventListener("load", function () {
+//   if (localStorage.getItem("email") && localStorage.getItem("password")) {
+//     firstPage.hide();
+//     secondPage.css("display", "flex");
+//     loginEmail.val(localStorage.getItem("email"));
+//     loginPassword.val(localStorage.getItem("password"));
+//   }
+// });
+
+/////////////////////fourth page/////////////////////////////////
+const startExamButton = $("#startExam");
+startExamButton.on("click", function () {
+  thirdPage.hide();
+  GetData();
+  fourthPage.css("display", "flex");
+});
+
+//////////////////////////fifth page///////////////////////////////////////
+const loadingDiv = $(".loading");
+const errorDiv = $(".error-message");
+const errorPara = $(".error-message p");
+async function GetData() {
+  loadingDiv.css("display", "flex");
+  $(".questions").hide();
+  $(".list").hide();
+  errorDiv.hide();
+  let array = [];
+  try {
+    let resp = await fetch("response.json");
+    if (!resp.ok) {
+      throw new Error(`error! Status: ${resp.status}`);
+    }
+    let questions = await resp.json();
+    if (questions.length === 0) {
+      loadingDiv.css("display", "none");
+      errorDiv.css("display", "flex");
+      errorPara.text("Data Not Found :(");
+      return;
+    }
+    questions.sort(() => Math.random() - 0.5);
+    array = questions.slice(0, 5);
+    loadingDiv.css("display", "none");
+    errorDiv.hide();
+    fourthPage.css("display", "flex");
+    $(".questions").css("display", "flex");
+    $(".list").css("display", "flex");
+  } catch (error) {
+    loadingDiv.css("display", "none");
+    errorDiv.css("display", "flex");
+    errorPara.text(`an error occured : ${error.message}`);
+  }
+  questionCreation(array);
+}
+let counter = 1;
+function questionCreation(array) {
+  array.forEach((question, i) => {
+    let questionDiv = $("<div></div>");
+    questionDiv.addClass(`question q-${i + 1} p-2 mb-3 fs-5 `);
+    questionDiv.html(
+      `<span class='visibleSpan'>${question.head}</span><i class="p-1 bi bi-flag"></i>`
+    );
+    questionDiv.insertBefore(".questions .slide");
+    let answerContainer = $(`<div class='answer-container ca-${i + 1}'></div>`);
+    question.options.forEach(function (answer) {
+      let answerButton = $(
+        `<button class='text-start a-${
+          i + 1
+        } answer p-2 mb-2'><p class="fs-6 p-0 m-0">${answer}</p></button>`
+      );
+      answerContainer.append(answerButton);
+      answerButton.on("click", function (e) {
+        let answers = $(`.questions .a-${i + 1}`);
+        answers.removeClass("active-answer");
+        $(this).addClass("active-answer");
+        localStorage.setItem(`question${i + 1}`, $(this.children).text());
+      });
+    });
+    answerContainer.insertAfter(questionDiv);
+    let flag = questionDiv.children().last();
+    flag.on("click", function () {
+      let listFlagged = $(`<div class="question p-2 ps-3 mb-3 fs-5 ">
+        <span class="visibleSpan f-${i + 1}" id="flaggedQuestion">Question${
+        i + 1
+      }</span><i class="text-danger bi bi-trash"></i></div>`);
+      if (!$(".list #flaggedQuestion").hasClass(`f-${i + 1}`)) {
+        $(".list").append(listFlagged);
+        listFlagged
+          .children()
+          .first()
+          .on("click", function () {
+            counter = i + 1;
+            console.log(counter);
+            showHide(counter);
+          });
+        listFlagged
+          .children()
+          .last()
+          .on("click", function () {
+            this.parentElement.remove();
+          });
+      }
+    });
+  });
+  showHide(1);
+}
+const prevButton = $(".arrow-left");
+const nextButton = $(".arrow-right");
+
+if (counter === 1) {
+  prevButton.attr("disabled", "true");
+  prevButton.addClass("disabled");
+}
+prevButton.on("click", function () {
+  counter--;
+  if (counter > 0) {
+    nextButton.removeAttr("disabled");
+    nextButton.removeClass("disabled");
+    showHide(counter);
+    if (counter === 1) {
+      counter = 1;
+      prevButton.attr("disabled", "true");
+      prevButton.addClass("disabled");
+    }
+  }
+});
+nextButton.on("click", function () {
+  counter++;
+  if (counter <= 5) {
+    prevButton.removeAttr("disabled");
+    prevButton.removeClass("disabled");
+    showHide(counter);
+    if (counter === 5) {
+      counter = 5;
+      nextButton.attr("disabled", "true");
+      nextButton.addClass("disabled");
+    }
+  }
+});
+
+function showHide(index) {
+  $(".questions .question").hide();
+  $(".questions .answer-container").hide();
+  $(`.q-${index}`).css("display", "flex");
+  $(`.ca-${index}`).css("display", "flex");
+  $(".number").text(`${counter} out of 5`);
+}
+/**
+ * <div
+            class="question p-2 mb-3 fs-5 d-flex align-items-center justify-content-between"
+          >
+            <span class="visibleSpan" id="flaggedQuestion">Question 1</span>
+            <i class="text-danger bi bi-trash"></i>
+          </div>
+ * <div
+          class="column text-start blockClass-1 bg-white questions z-4 align-items-start me-4 flex-column col-12 col-sm-12 col-md-7 col-lg-8"
+        >
+          <div class="clock d-flex justify-content-start gap-2">
+            <i class="bi bi-alarm"></i>
+            <span class="visibleSpan">00:00</span>
+          </div>
+          <h3 class="d-flex justify-content-start">
+            Choose the correct answer
+          </h3>
+          <div class="question p-2 mb-3 fs-5 d-flex justify-content-between">
+            <span class="visibleSpan"
+              >The Basic Building blocks of HTML are called</span
+            >
+            <i class="p-1 bi bi-flag"></i>
+          </div>
+          <button class="text-start answer p-2 mb-2">
+            <p class="fs-6 p-0 m-0">Classes</p>
+          </button>
+          <button class="text-start answer p-2 mb-2">
+            <p class="fs-6 p-0 m-0">Selectors</p>
+          </button>
+          <button class="text-start answer p-2 mb-2">
+            <p class="fs-6 p-0 m-0">Properties</p>
+          </button>
+          <button class="text-start answer p-2 mb-2">
+            <p class="p-0 m-0 fs-6">Elements</p>
+          </button>
+          <div
+            class="slide d-flex justify-content-center align-items-center pe-2 gap-3"
+          >
+            <div
+              class="slide-arrow d-flex flex-fill align-items-center justify-content-center"
+            >
+              <button class="arrow">
+                <i class="bi bi-caret-left-square-fill"></i>
+              </button>
+              <span class="fs-6">1 out of 6</span>
+              <button class="arrow">
+                <i class="bi bi-caret-right-square-fill"></i>
+              </button>
+            </div>
+            <button class="submit-answer p-2 me-3">Submit</button>
+          </div>
+        </div>
+        <div
+        <div
+          class="column bg-white list z-3 blockClass-1 text-center justify-content-center align-items-center col-12 col-sm-12 col-md-3 col-lg-3"
+        >
+          <p class="fs-4">Marked Questions</p>
+          <hr />
+          <div
+            class="question p-2 mb-3 fs-5 d-flex align-items-center justify-content-between"
+          >
+            <span class="visibleSpan" id="flaggedQuestion">Question 1</span>
+            <i class="text-danger bi bi-trash"></i>
+          </div>
+        </div>
+ */
