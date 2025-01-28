@@ -1,4 +1,4 @@
-/* first page */
+/* start of first page */
 
 body {
   padding: 0;
@@ -119,10 +119,9 @@ button[type="submit"]:focus {
   visibility: hidden;
 }
 
-.span-shake{
+.span-shake {
   animation: shake-span 0.4s 2;
 }
-
 
 #have-acc-span {
   color: #0c0738;
@@ -150,7 +149,7 @@ button[type="submit"]:focus {
   color: darkblue;
   text-decoration: underline;
 }
-
+/* start of animation */
 @keyframes shake-span {
   0% {
     transform: translate(0, 0);
@@ -251,6 +250,7 @@ button[type="submit"]:focus {
     transform: translateY(0);
   }
 }
+/* end of animation */
 
 .formify-form-shapes-bg {
   position: absolute;
@@ -294,7 +294,9 @@ button[type="submit"]:focus {
 .first-full-container {
   /* display: none; */
 }
-/* second page */
+/* start of first page */
+
+/* start of second page */
 
 .second-full-container {
   width: 100%;
@@ -308,8 +310,9 @@ button[type="submit"]:focus {
   align-items: center;
   display: none;
 }
+/* end of second page */
 
-/* third page */
+/* start of third page */
 
 .third-full-container {
   width: 100%;
@@ -363,8 +366,9 @@ button[type="submit"]:focus {
   background-color: rgb(42, 38, 102);
   transform: translateY(-0.2rem);
 }
+/* end of third page */
 
-/* fourth contaner */
+/*start of  fourth contaner */
 .fourth-full-container {
   width: 100%;
   height: 100%;
@@ -509,8 +513,9 @@ button[type="submit"]:focus {
   cursor: not-allowed;
   opacity: 0.3;
 }
+/*end of  fourth contaner */
 
-/* fifth page */
+/* start of fifth page */
 
 .fifth-full-container {
   width: 100%;
@@ -550,8 +555,9 @@ button[type="submit"]:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   /* animation: shake-img-y 0.8s 10; */
 }
+/* end of fifth page */
 
-/* timeout page */
+/* start of timeout page */
 
 .timeout-full-container {
   width: 100%;
@@ -585,7 +591,7 @@ button[type="submit"]:focus {
   font-size: larger;
   font-weight: bold;
 }
-/*loader*/
+/* start of loader*/
 .loading {
   height: 100%;
   width: 100%;
@@ -597,23 +603,6 @@ button[type="submit"]:focus {
   justify-content: center;
   display: none;
 }
-/*
-.loader {
-   position: absolute;
-  left: 44%;
-  top: 25%;
-  transform: translate(-50%, -50%); 
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid blue;
-  border-bottom: 16px solid blue;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
- 
-}*/
-/*loading div*/
 
 .lds-spinner,
 .lds-spinner div,
@@ -699,7 +688,6 @@ button[type="submit"]:focus {
     opacity: 0;
   }
 }
-/*end loading div*/
 
 @-webkit-keyframes spin {
   0% {
@@ -718,7 +706,9 @@ button[type="submit"]:focus {
     transform: rotate(360deg);
   }
 }
-/*error message div*/
+/*end loading div*/
+
+/* start of error message div*/
 .error-message {
   height: 100%;
   width: 100%;
@@ -737,3 +727,6 @@ button[type="submit"]:focus {
   font-size: 3rem;
   color: brown;
 }
+/* start of error message div*/
+
+/* end of timeout page */
