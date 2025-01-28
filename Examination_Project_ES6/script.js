@@ -54,13 +54,24 @@ const loginPassword = $("input[name='loginPassword']");
 const loginPasswordSpan = $("#loginPasswordSpan");
 const loginPasswordMessage =
   "password should contain at least one uppercase , one lowercase , one special char , one number";
+//sign in button selector
+const signIn = $(".link-style");
 
 function validateInput(input, regex, errorSpan, errorMessage) {
   if (!regex.test(input.val()) && input.val() !== "") {
     errorSpan.css("visibility", "visible").text(errorMessage);
+    errorSpan.removeClass("span-shake");
+    setTimeout(function () {
+      errorSpan.addClass("span-shake");
+    }, 5);
     return false;
   } else if (input.val() === "") {
     errorSpan.css("visibility", "visible").text("This field is required.");
+    errorSpan.removeClass("span-shake");
+    setTimeout(function () {
+      errorSpan.addClass("span-shake");
+    }, 5);
+
     return false;
   } else if (regex.test(input.val())) {
     errorSpan.css("visibility", "hidden").text("");
@@ -90,9 +101,19 @@ signUp.on("click", function (e) {
   //check validity for input 5 which is password
   if (rePassword.val() !== password.val() && rePassword.val() !== "") {
     rePasswordSpan.css("visibility", "visible").text(rePasswordMessage);
+    rePasswordSpan.removeClass("span-shake");
+    setTimeout(function () {
+      rePasswordSpan.addClass("span-shake");
+    }, 5);
+
     valid = false;
   } else if (rePassword.val() === "") {
     rePasswordSpan.css("visibility", "visible").text("This field is required");
+    rePasswordSpan.removeClass("span-shake");
+    setTimeout(function () {
+      rePasswordSpan.addClass("span-shake");
+    }, 5);
+
     valid = false;
   } else if (rePassword.val() === password.val()) {
     rePasswordSpan.css("visibility", "hidden").text("");
@@ -160,11 +181,19 @@ signInButton.on("click", function (e) {
     } else {
       if (loginEmail.val() !== userEmail) {
         loginEmailSpan.css("visibility", "visible").text("email is not found");
+        loginEmailSpan.removeClass("span-shake");
+        setTimeout(function () {
+          loginEmailSpan.addClass("span-shake");
+        }, 5);
       }
       if (loginPassword.val() !== userPassword) {
         loginPasswordSpan
           .css("visibility", "visible")
           .text("password is not found");
+        loginPasswordSpan.removeClass("span-shake");
+        setTimeout(function () {
+          loginPasswordSpan.addClass("span-shake");
+        }, 5);
       }
     }
   }
@@ -181,6 +210,15 @@ startExam.addEventListener("mouseout", function () {
   startExamImg.style.backgroundImage = "url(images/happy.jpg)";
 });
 
+//signin first page
+signIn.on("click", function () {
+  if (window.localStorage.getItem("email")) {
+    firstPage.hide();
+    secondPage.css("display", "flex");
+    loginEmail.val(localStorage.getItem("email"));
+    loginPassword.val(localStorage.getItem("password"));
+  }
+});
 /////////////////////fourth page/////////////////////////////////
 const loadingDiv = $(".loading");
 const errorDiv = $(".error-message");

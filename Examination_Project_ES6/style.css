@@ -116,9 +116,13 @@ button[type="submit"]:focus {
   min-height: 24px;
   color: red;
   font-family: "Courier New", Courier, monospace;
-  animation: shake-span 0.3s 10;
   visibility: hidden;
 }
+
+.span-shake{
+  animation: shake-span 0.4s 2;
+}
+
 
 #have-acc-span {
   color: #0c0738;
@@ -132,14 +136,18 @@ button[type="submit"]:focus {
   color: #333;
 }
 
-.have-acc a {
-  color: #1a0e86;
+.link-style {
+  display: inline-block;
+  color: blue;
   text-decoration: none;
-  transition: color 0.5s;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: inherit;
 }
 
-.have-acc a:hover {
-  color: #4f255c;
+.link-style:hover {
+  color: darkblue;
   text-decoration: underline;
 }
 
