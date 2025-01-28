@@ -398,13 +398,13 @@ function questionCreation(array) {
  * @param {number} second
  */
 function checkTime(minutes, second) {
-  if (second === 20) {
+  if (minutes === 2) {
     clockStart.css("color", "#5f0f0f");
     clock.css("animation", "shake-img 1s 60");
     timeRunSpan.css("color", "#5f0f0f");
     timeRunSpan.text("Hurry up, the time is running!!");
   }
-  if (second === 35) {
+  if (minutes === 3) {
     clearInterval(interval);
     fourthPage.hide();
     timeoutPage.css("display", "flex");
