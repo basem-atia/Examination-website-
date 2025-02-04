@@ -1,5 +1,7 @@
 /* start of first page */
-
+html {
+  size: 62.5%;
+}
 body {
   padding: 0;
   margin: 0;
